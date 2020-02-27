@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">SmartBank</string>
+    <string name="home_tile">Welcome to SmartBank</string>
+</resources>

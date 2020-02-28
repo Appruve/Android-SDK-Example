@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, AppruveActivity::class.java)
             val bundle = Bundle()
 
-            bundle.putString(APPRUVE_API_TOKEN, "YOUR API TOKEN")
+            bundle.putString(APPRUVE_API_TOKEN, "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJmNDk4OGUxMC1hMGU4LTQ4MjUtOTY4MC01ZDVkNzdkMmU1ZDciLCJhdWQiOiIzODdkNzk4Ny1hYTgwLTQ3N2ItOGZjYi1hMzU0OGQyOTkzMTUiLCJzdWIiOiJlN2ZmN2MwZC1hNmJjLTQ0NjAtODNlZi05ZmQxYTA3NmZkZTkiLCJuYmYiOjAsInNjb3BlcyI6WyJ2ZXJpZmljYXRpb25fdmlldyIsInZlcmlmaWNhdGlvbl9saXN0IiwidmVyaWZpY2F0aW9uX2RvY3VtZW50IiwidmVyaWZpY2F0aW9uX2lkZW50aXR5Il0sImV4cCI6MzE1NzY4MjgzMCwiaWF0IjoxNTc5NzU5NjMwfQ.RotgmvvHnCCCDpldWNSz9c6o28H8anHq0IOkD1dJQyI")
             bundle.putString(STATUS_BAR_COLOR, "#00693C")
             bundle.putString(TOOLBAR_BACKGROUND_COLOR, "#0F5738")
             bundle.putString(NAVIGATION_BUTTON_BACKGROUND_COLOR, "#75AF96")

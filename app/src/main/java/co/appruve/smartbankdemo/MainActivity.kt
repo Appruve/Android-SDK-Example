@@ -21,10 +21,14 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, VerificationActivity::class.java)
             val bundle = Bundle()
 
+            val customParamsBundle = Bundle()
+            customParamsBundle.putString("userId", "0caa730e-0f80-4967-b19c-fe9cdbcb80fa")
+
             bundle.putString(APPRUVE_API_TOKEN, "YOUR API TOKEN")
             bundle.putBoolean(IS_GHANA_ENABLED, true)
             bundle.putBoolean(IS_NIGERIA_ENABLED, true)
             bundle.putBoolean(IS_KENYA_ENABLED, true)
+            bundle.putBundle(CUSTOM_PARAMS, customParamsBundle)
 
             intent.putExtras(bundle)
 

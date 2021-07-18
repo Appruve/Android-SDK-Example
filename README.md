@@ -4,13 +4,13 @@ Example Implementation.
 
 ## Setup
 
-1. Add **appruve** maven repository to the **project** ```build.gradle``` file.
+1. Add the JitPack repository to your **project** ```build.gradle``` file.
 ```
 allprojects {
     repositories {
         ...
         maven {
-            url 'https://dl.bintray.com/appruve/maven'
+            url 'https://jitpack.io'
         }
         ...
     }
@@ -20,10 +20,12 @@ allprojects {
 ```
 dependencies {
     ...
-    implementation 'co.appruve.identitysdk:appruveMobileSDK:0.0.5'
+    implementation 'co.appruve:appruve-android-sdk:v0.0.5'
     ...
 }
 ```
+
+Get the latest dependency at [jitpack.io][J].
 
 ## Using
 
@@ -137,3 +139,5 @@ If you don't extend a SDK theme, you must still apply a theme that extends from 
     <item name="colorAccent">@color/my_color_accent</item>
 </style>
 ```
+
+[J]: https://jitpack.io/#co.appruve/appruve-android-sdk

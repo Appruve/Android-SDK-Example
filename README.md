@@ -81,6 +81,84 @@ override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) 
 }
 ```
 
+## SDK Settings
+
+### ID Capture Only
+
+By default the SDK will take the user through 2 stages of verification.
+
+1. ID Capture
+2. Selfie Capture
+
+You can however set the SDK to only do ID Capture. 
+
+```java
+bundle.putBoolean(IS_ID_CAPTURE_ONLY, true)
+```
+
+The ID Capture process will prompt the user to capture live their ID document, after which OCR will be performed on the document. The OCR process also involves verifying the captured data against the Government ID database. Once the process is complete, the SDK will exit and the captured data will be returned in the `onActivityResult` callback with the `APPRUVE_EXTRA_ID_DATA` bundle key. The data returned with the `APPRUVE_EXTRA_ID_DATA` key is a JSON string. For example:
+
+```java
+override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    // Check which request we're responding to
+    if (requestCode == START_VERIFICATION_ACTIVITY_REQUEST) {
+        // Make sure the request was successful
+        if (resultCode == RESULT_SUCCESS_CODE) {
+            if(data != null) {
+                val capturedData: String =
+                    data.extras?.getString(APPRUVE_EXTRA_ID_DATA, "")!!
+                Log.e(TAG, capturedData)
+            }
+        }
+    } else {
+        super.onActivityResult(requestCode, resultCode, data)
+    }
+}
+```
+
+### Enable/Disable Countries and ID types
+
+By default all three countries (Ghana, Nigeria, Kenya) that we currently support are enabled. However, you can disable specific countries.
+
+**Ghana**
+```java
+bundle.putBoolean(IS_GHANA_ENABLED, false)
+```
+
+**Nigeria**
+```java
+bundle.putBoolean(IS_NIGERIA_ENABLED, false)
+```
+
+**Kenya**
+```java
+bundle.putBoolean(IS_KENYA_ENABLED, false)
+```
+
+You can also disable specific ID types for countries you have enabled.
+
+**Ghana**
+```java
+bundle.putBoolean(IS_GHANA_VOTER_ID_ENABLED, false)
+bundle.putBoolean(IS_GHANA_PASSPORT_ID_ENABLED, false)
+bundle.putBoolean(IS_GHANA_DRIVER_LICENSE_ID_ENABLED, false)
+bundle.putBoolean(IS_GHANA_SSNIT_ID_ENABLED, false)
+```
+
+**Nigeria**
+```java
+bundle.putBoolean(IS_NIGERIA_VOTER_ID_ENABLED, false)
+bundle.putBoolean(IS_NIGERIA_PASSPORT_ID_ENABLED, false)
+bundle.putBoolean(IS_NIGERIA_DRIVER_LICENSE_ID_ENABLED, false)
+bundle.putBoolean(IS_NIGERIA_NATIONAL_ID_ENABLED, false)
+```
+
+**Kenya**
+```java
+bundle.putBoolean(IS_KENYA_NATIONAL_ID_ENABLED, false)
+bundle.putBoolean(IS_KENYA_PASSPORT_ID_ENABLED, false)
+```
+
 ## Customizing the look
 
 ### Material Design theming

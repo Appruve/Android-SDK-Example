@@ -25,9 +25,18 @@ class MainActivity : AppCompatActivity() {
             customParamsBundle.putString("userId", "0caa730e-0f80-4967-b19c-fe9cdbcb80fa")
 
             bundle.putString(APPRUVE_API_TOKEN, "YOUR API TOKEN")
+            bundle.putBoolean(IS_ID_CAPTURE_ONLY, false) // Capture only ID Document
+            bundle.putBoolean(IS_SELFIE_CAPTURE_ONLY, true) // Capture only Selfie
+            // Set transaction ref previously returned to re-enroll or continue with same verification
+            bundle.putString(TRANSACTION_REFERENCE, "b1543d5d-fc98-41ac-a9fa-ff9be2a159b6")
+
             bundle.putBoolean(IS_GHANA_ENABLED, true)
             bundle.putBoolean(IS_NIGERIA_ENABLED, true)
             bundle.putBoolean(IS_KENYA_ENABLED, true)
+            bundle.putBoolean(IS_NIGERIA_VOTER_ID_ENABLED, true)
+            bundle.putBoolean(IS_NIGERIA_PASSPORT_ID_ENABLED, false)
+            bundle.putBoolean(IS_NIGERIA_DRIVER_LICENSE_ID_ENABLED, false)
+            bundle.putBoolean(IS_NIGERIA_NATIONAL_ID_ENABLED, false)
             bundle.putBundle(CUSTOM_PARAMS, customParamsBundle)
 
             intent.putExtras(bundle)

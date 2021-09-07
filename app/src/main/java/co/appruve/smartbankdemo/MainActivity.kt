@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
             customParamsBundle.putString("userId", "0caa730e-0f80-4967-b19c-fe9cdbcb80fa")
 
             bundle.putString(APPRUVE_API_TOKEN, "YOUR API TOKEN")
+            bundle.putBoolean(IS_RETRY_ENABLED, false) // Disable retry con OCR failure
             bundle.putBoolean(IS_ID_CAPTURE_ONLY, false) // Capture only ID Document
             bundle.putBoolean(IS_SELFIE_CAPTURE_ONLY, true) // Capture only Selfie
             // Set transaction ref previously returned to re-enroll or continue with same verification
@@ -48,7 +49,7 @@ class MainActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         // Check which request we're responding to
         if (requestCode == START_VERIFICATION_ACTIVITY_REQUEST) {
-            // Make sure the request was successful
+            // the request was successful
             if (resultCode == RESULT_SUCCESS_CODE) {
                 if (data != null) {
                     val isVerified: Boolean =
@@ -67,10 +68,24 @@ class MainActivity : AppCompatActivity() {
                     Log.d(TAG, verificationId)
                 }
             }
+            // the request failed
+            // expect this result if you disable retry
+            else if (resultCode == RESULT_FAILED_CODE) {
+                if (data != null) {
+                    val errorMessage: String =
+                        data.extras?.getString(APPRUVE_EXTRA_ERROR_DATA, "")!!
+                    val verificationId =
+                        data.extras?.getString(APPRUVE_EXTRA_VERIFICATION_ID, "")!!
+
+                    Log.d(TAG, errorMessage)
+                    Log.d(TAG, verificationId)
+                }
+            }
         } else {
             super.onActivityResult(requestCode, resultCode, data)
         }
     }
+
 
     companion object {
         private const val TAG = "MainActivity"

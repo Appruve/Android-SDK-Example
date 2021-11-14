@@ -2,10 +2,13 @@
 
 Example Implementation.
 
+| <img src="https://user-images.githubusercontent.com/5106229/141696501-3dbdca2a-4ef2-41e9-8f97-80d7fdefdad6.jpg" width="250"> | <img src="https://user-images.githubusercontent.com/5106229/141696504-a11670a5-f77c-41d5-aebf-0227bb389c01.jpg" width="250"> | <img src="https://user-images.githubusercontent.com/5106229/141696507-d74cf090-8a30-4b48-bb72-9b75d0bd1683.jpg" width="250"> | <img src="https://user-images.githubusercontent.com/5106229/141696508-b041aaf3-0a3e-4f52-b2ce-a57adc06c592.jpg" width="250"> | <img src="https://user-images.githubusercontent.com/5106229/141696512-6c8d866c-b7fe-40b8-aba7-f923ad741a4c.jpg" width="250"> |
+|------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------|
+
 ## Setup
 
 1. Add the JitPack repository to your **project** ```build.gradle``` file.
-```
+```groovy
 allprojects {
     repositories {
         ...
@@ -17,10 +20,10 @@ allprojects {
 }
 ```
 2. Add the following to the **module** ```build.gradle``` file:
-```
+```groovy
 dependencies {
     ...
-    implementation 'co.appruve:appruve-android-sdk:v0.0.5'
+    implementation 'co.appruve:appruve-android-sdk:v0.1.4'
     ...
 }
 ```
@@ -31,7 +34,7 @@ Get the latest dependency at [jitpack.io][J].
 
 Just start the ```VerificationActivity```:
 
-```
+```kotlin
 val intent = Intent(this, VerificationActivity::class.java)
 val bundle = Bundle()
 
@@ -52,28 +55,39 @@ startActivityForResult(intent, START_VERIFICATION_ACTIVITY_REQUEST)
 
 To process the result you need to override ```onActivityResult()``` of your Activity.
 
-```
+```kotlin
 override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
     // Check which request we're responding to
     if (requestCode == START_VERIFICATION_ACTIVITY_REQUEST) {
         // Make sure the request was successful
         if (resultCode == RESULT_SUCCESS_CODE) {
             if(data != null) {
-                val isVerified: Boolean =
-                    data.extras?.getBoolean(APPRUVE_EXTRA_IS_VERIFIED, false)!!
-                val documentType: String =
-                    data.extras?.getString(APPRUVE_EXTRA_DOCUMENT_TYPE, "")!!
+                val isVerified: Boolean = data.extras?.getBoolean(APPRUVE_EXTRA_IS_VERIFIED, false)!!
+                val documentType: String = data.extras?.getString(APPRUVE_EXTRA_DOCUMENT_TYPE, "")!!
                 val idPhotoUrl = data.extras?.getString(APPRUVE_EXTRA_ID_PHOTO_URL, "")!!
-                val selfiePhotoUrl =
-                    data.extras?.getString(APPRUVE_EXTRA_SELFIE_PHOTO_URL, "")!!
-                val verificationId =
-                    data.extras?.getString(APPRUVE_EXTRA_VERIFICATION_ID, "")!!
-                Log.e(TAG, isVerified.toString())
+                val selfiePhotoUrl = data.extras?.getString(APPRUVE_EXTRA_SELFIE_PHOTO_URL, "")!!
+                val verificationId = data.extras?.getString(APPRUVE_EXTRA_VERIFICATION_ID, "")!!
+                val customParams = data.extras?.getString(APPRUVE_EXTRA_CUSTOM_PARAMS, "")!!
+                val extractedIDData = data.extras?.getString(APPRUVE_EXTRA_ID_DATA, "")!!
+
+                Log.d(TAG, isVerified.toString())
                 Log.d(TAG, documentType)
                 Log.d(TAG, idPhotoUrl)
                 Log.d(TAG, selfiePhotoUrl)
                 Log.d(TAG, verificationId)
+                Log.d(TAG, customParams)
+                Log.d(TAG, extractedIDData)
             }
+        }
+    }  else if (resultCode == RESULT_FAILED_CODE) {
+        if (data != null) {
+            val errorMessage: String =
+                data.extras?.getString(APPRUVE_EXTRA_ERROR_DATA, "")!!
+            val verificationId =
+                data.extras?.getString(APPRUVE_EXTRA_VERIFICATION_ID, "")!!
+
+            Log.d(TAG, errorMessage)
+            Log.d(TAG, verificationId)
         }
     } else {
         super.onActivityResult(requestCode, resultCode, data)
@@ -92,13 +106,13 @@ By default the SDK will take the user through 2 stages of verification.
 
 You can however set the SDK to only do ID Capture. 
 
-```java
+```kotlin
 bundle.putBoolean(IS_ID_CAPTURE_ONLY, true)
 ```
 
 The ID Capture process will prompt the user to capture live their ID document, after which OCR will be performed on the document. The OCR process also involves verifying the captured data against the Government ID database. Once the process is complete, the SDK will exit and the captured data will be returned in the `onActivityResult` callback with the `APPRUVE_EXTRA_ID_DATA` bundle key. The data returned with the `APPRUVE_EXTRA_ID_DATA` key is a JSON string. For example:
 
-```java
+```kotlin
 override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
     // Check which request we're responding to
     if (requestCode == START_VERIFICATION_ACTIVITY_REQUEST) {
@@ -107,7 +121,7 @@ override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) 
             if(data != null) {
                 val capturedData: String =
                     data.extras?.getString(APPRUVE_EXTRA_ID_DATA, "")!!
-                Log.e(TAG, capturedData)
+                Log.d(TAG, capturedData)
             }
         }
     } else {
@@ -121,24 +135,24 @@ override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) 
 By default all three countries (Ghana, Nigeria, Kenya) that we currently support are enabled. However, you can disable specific countries.
 
 **Ghana**
-```java
+```kotlin
 bundle.putBoolean(IS_GHANA_ENABLED, false)
 ```
 
 **Nigeria**
-```java
+```kotlin
 bundle.putBoolean(IS_NIGERIA_ENABLED, false)
 ```
 
 **Kenya**
-```java
+```kotlin
 bundle.putBoolean(IS_KENYA_ENABLED, false)
 ```
 
 You can also disable specific ID types for countries you have enabled.
 
 **Ghana**
-```java
+```kotlin
 bundle.putBoolean(IS_GHANA_VOTER_ID_ENABLED, false)
 bundle.putBoolean(IS_GHANA_PASSPORT_ID_ENABLED, false)
 bundle.putBoolean(IS_GHANA_DRIVER_LICENSE_ID_ENABLED, false)
@@ -146,7 +160,7 @@ bundle.putBoolean(IS_GHANA_SSNIT_ID_ENABLED, false)
 ```
 
 **Nigeria**
-```java
+```kotlin
 bundle.putBoolean(IS_NIGERIA_VOTER_ID_ENABLED, false)
 bundle.putBoolean(IS_NIGERIA_PASSPORT_ID_ENABLED, false)
 bundle.putBoolean(IS_NIGERIA_DRIVER_LICENSE_ID_ENABLED, false)
@@ -154,7 +168,7 @@ bundle.putBoolean(IS_NIGERIA_NATIONAL_ID_ENABLED, false)
 ```
 
 **Kenya**
-```java
+```kotlin
 bundle.putBoolean(IS_KENYA_NATIONAL_ID_ENABLED, false)
 bundle.putBoolean(IS_KENYA_PASSPORT_ID_ENABLED, false)
 ```

@@ -130,6 +130,14 @@ override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) 
 }
 ```
 
+### Selfie Capture Only
+
+This setting will only take the user through the selfie capture and liveness test flow.
+
+```kotlin
+bundle.putBoolean(IS_SELFIE_CAPTURE_ONLY, true)
+```
+
 ### Enable/Disable Countries and ID types
 
 By default all three countries (Ghana, Nigeria, Kenya) that we currently support are enabled. However, you can disable specific countries.

@@ -138,6 +138,16 @@ This setting will only take the user through the selfie capture and liveness tes
 bundle.putBoolean(IS_SELFIE_CAPTURE_ONLY, true)
 ```
 
+### Re-enrollment
+
+After a user has gone through the verification process we return you the verification ID. This ID is unique to the user and can be used to re-enroll the user to your application. To re-enroll a user simply do the following.
+
+```ruby
+    bundle.putString(APPRUVE_EXTRA_VERIFICATION_ID, "*********")
+```
+
+Replace `*********` with the verification ID saved when the user enrolled the first.
+
 ### Enable/Disable Countries and ID types
 
 By default all three countries (Ghana, Nigeria, Kenya) that we currently support are enabled. However, you can disable specific countries.

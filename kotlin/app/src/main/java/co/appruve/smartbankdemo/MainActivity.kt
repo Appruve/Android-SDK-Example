@@ -49,6 +49,7 @@ class MainActivity : AppCompatActivity() {
         button = findViewById(R.id.button)
 
         kycActivityLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            Log.e(TAG, result.toString())
             val data = result.data
             if (result.resultCode == RESULT_SUCCESS_CODE) {
                 if (data != null) {
@@ -92,11 +93,11 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, VerificationActivity::class.java)
             val bundle = Bundle()
 
-            bundle.putString(APPRUVE_API_TOKEN, "YOUR_API_TOKEN")
-            bundle.putBoolean(IS_RETRY_ENABLED, true) // Disable retry on OCR failure
+            bundle.putString(APPRUVE_API_TOKEN, "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI5YzkzNzU5Yi02NjMyLTRlOTYtOTM5My00ZDU0NjJlYTMxNmMiLCJhdWQiOiI4MmU4MWJlYy1mMDExLTQyMTgtOTVjZi1hYTkxOTE1NTA3YTgiLCJzdWIiOiJjOWI3OGNiMS05MzA4LTQ4ZjgtYTE5NC0xNzVkN2VkMDllNjkiLCJuYmYiOjAsInNjb3BlcyI6WyJ2ZXJpZmljYXRpb25fdmlldyIsInZlcmlmaWNhdGlvbl9saXN0IiwidmVyaWZpY2F0aW9uX2RvY3VtZW50IiwidmVyaWZpY2F0aW9uX2lkZW50aXR5Il0sImV4cCI6MzE4NzQyMTE1MywiaWF0IjoxNjA5NTg0MzUzfQ.f-XbdiwSehmmXYN51l4H-hAW4EDQvobsaBuCpgtnh04")
+            bundle.putBoolean(IS_RETRY_ENABLED, false) // Disable retry on OCR failure
             bundle.putBoolean(IS_ID_CAPTURE_ONLY, false) // Capture only ID Document
             bundle.putBoolean(IS_SELFIE_CAPTURE_ONLY, false) // Capture only Selfie
-            bundle.putString(TRANSACTION_REFERENCE, "3e639285-22ee-45a3-beb2-43e320d391a1") // Set transaction ref previously returned for re-enrollment
+            // bundle.putString(TRANSACTION_REFERENCE, "7216eed5-eda0-475e-86fe-07b37a95826c") // Set transaction ref previously returned for re-enrollment
 
             // enable or disable countries
             bundle.putBoolean(IS_GHANA_ENABLED, true)

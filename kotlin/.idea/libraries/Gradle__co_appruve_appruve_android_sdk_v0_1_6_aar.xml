@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: co.appruve:appruve-android-sdk:v0.1.6@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d3536c2c23b78ad08b0ae2d1362fb449/jetified-appruve-android-sdk-v0.1.6/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d3536c2c23b78ad08b0ae2d1362fb449/jetified-appruve-android-sdk-v0.1.6/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d3536c2c23b78ad08b0ae2d1362fb449/jetified-appruve-android-sdk-v0.1.6/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

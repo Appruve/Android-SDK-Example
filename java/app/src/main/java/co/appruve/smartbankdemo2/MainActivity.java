@@ -58,16 +58,16 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, VerificationActivity.class);
             Bundle bundle = new Bundle();
 
-            bundle.putString(Constants.APPRUVE_API_TOKEN, "YOUR_API_TOKEN");
+            bundle.putString(Constants.APPRUVE_API_TOKEN, "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI5YzkzNzU5Yi02NjMyLTRlOTYtOTM5My00ZDU0NjJlYTMxNmMiLCJhdWQiOiI4MmU4MWJlYy1mMDExLTQyMTgtOTVjZi1hYTkxOTE1NTA3YTgiLCJzdWIiOiJjOWI3OGNiMS05MzA4LTQ4ZjgtYTE5NC0xNzVkN2VkMDllNjkiLCJuYmYiOjAsInNjb3BlcyI6WyJ2ZXJpZmljYXRpb25fdmlldyIsInZlcmlmaWNhdGlvbl9saXN0IiwidmVyaWZpY2F0aW9uX2RvY3VtZW50IiwidmVyaWZpY2F0aW9uX2lkZW50aXR5Il0sImV4cCI6MzE4NzQyMTE1MywiaWF0IjoxNjA5NTg0MzUzfQ.f-XbdiwSehmmXYN51l4H-hAW4EDQvobsaBuCpgtnh04");
             bundle.putBoolean(Constants.IS_RETRY_ENABLED, true); // Disable retry on OCR failure
             bundle.putBoolean(Constants.IS_ID_CAPTURE_ONLY, false); // Capture only ID Document
             bundle.putBoolean(Constants.IS_SELFIE_CAPTURE_ONLY, false); // Capture only Selfie
-            bundle.putString(Constants.TRANSACTION_REFERENCE, "3e639285-22ee-45a3-beb2-43e320d391a1"); // Set transaction ref previously returned for re-enrollment
+            // bundle.putString(Constants.TRANSACTION_REFERENCE, ""); // Set transaction ref previously returned for re-enrollment
 
             // enable or disable countries
             bundle.putBoolean(Constants.IS_GHANA_ENABLED, true);
-            bundle.putBoolean(Constants.IS_NIGERIA_ENABLED, true);
-            bundle.putBoolean(Constants.IS_KENYA_ENABLED, true);
+            bundle.putBoolean(Constants.IS_NIGERIA_ENABLED, false);
+            bundle.putBoolean(Constants.IS_KENYA_ENABLED, false);
 
             // enable or disable Ghana IDs
             bundle.putBoolean(Constants.IS_GHANA_VOTER_ID_ENABLED, true);

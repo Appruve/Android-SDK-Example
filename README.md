@@ -104,7 +104,7 @@ By default the SDK will take the user through 2 stages of verification.
 1. ID Capture
 2. Selfie Capture
 
-You can however set the SDK to only do ID Capture. 
+You can however set the SDK to only do ID Capture.
 
 ```kotlin
 bundle.putBoolean(IS_ID_CAPTURE_ONLY, true)
@@ -157,6 +157,7 @@ bundle.putBoolean(IS_GHANA_VOTER_ID_ENABLED, false)
 bundle.putBoolean(IS_GHANA_PASSPORT_ID_ENABLED, false)
 bundle.putBoolean(IS_GHANA_DRIVER_LICENSE_ID_ENABLED, false)
 bundle.putBoolean(IS_GHANA_SSNIT_ID_ENABLED, false)
+bundle.putBoolean(IS_GHANA_NATIONAL_ID_ENABLED, false)
 ```
 
 **Nigeria**

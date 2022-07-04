@@ -93,7 +93,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, VerificationActivity::class.java)
             val bundle = Bundle()
 
-            bundle.putString(APPRUVE_API_TOKEN, "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI5YzkzNzU5Yi02NjMyLTRlOTYtOTM5My00ZDU0NjJlYTMxNmMiLCJhdWQiOiI4MmU4MWJlYy1mMDExLTQyMTgtOTVjZi1hYTkxOTE1NTA3YTgiLCJzdWIiOiJjOWI3OGNiMS05MzA4LTQ4ZjgtYTE5NC0xNzVkN2VkMDllNjkiLCJuYmYiOjAsInNjb3BlcyI6WyJ2ZXJpZmljYXRpb25fdmlldyIsInZlcmlmaWNhdGlvbl9saXN0IiwidmVyaWZpY2F0aW9uX2RvY3VtZW50IiwidmVyaWZpY2F0aW9uX2lkZW50aXR5Il0sImV4cCI6MzE4NzQyMTE1MywiaWF0IjoxNjA5NTg0MzUzfQ.f-XbdiwSehmmXYN51l4H-hAW4EDQvobsaBuCpgtnh04")
+            bundle.putString(APPRUVE_API_TOKEN, "YOUR_API_TOKEN")
             bundle.putBoolean(IS_RETRY_ENABLED, false) // Disable retry on OCR failure
             bundle.putBoolean(IS_ID_CAPTURE_ONLY, false) // Capture only ID Document
             bundle.putBoolean(IS_SELFIE_CAPTURE_ONLY, false) // Capture only Selfie

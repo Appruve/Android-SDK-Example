@@ -36,8 +36,8 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
 
-    implementation 'co.appruve:appruve-android-sdk:v0.1.6'
-    // implementation 'co.appruve.identitysdk:appruveMobileSDK:0.1.7'
+    // implementation 'co.appruve:appruve-android-sdk:v0.1.8'
+    implementation 'co.appruve.identitysdk:appruveMobileSDK:0.1.9'
     implementation 'com.google.android.material:material:1.4.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
